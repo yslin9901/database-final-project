@@ -1,11 +1,20 @@
 .App {
+  margin-top: 20%;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.moments-container {
+  display: flex;
+  flex-wrap: wrap;
 }
+
+.moments-container>div {
+  flex: 0 50%;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

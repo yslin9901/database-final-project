@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+import Moment from './components/Moment'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="moments-container">
+        <Moment name="路跑"/>
+        <Moment name="健身"/>
+        <Moment name="工作"/>
+        <Moment name="晚餐"/>
+        <Moment name="派對"/>
+        <Moment name="清晨"/>
+      </div>
     </div>
   );
 }
