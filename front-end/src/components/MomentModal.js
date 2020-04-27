@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { Router, Route, Link } from 'react-router-dom';
 import '../App.css';
 
 import Slider from './Slider';    
@@ -33,7 +34,7 @@ function Example(props) {
             關閉
           </Button>
           <Button variant="primary" onClick={handleSave}>
-            開始播放
+            <Link to="/player" className="link">開始播放</Link>
           </Button>
         </Modal.Footer>
       </Modal>
