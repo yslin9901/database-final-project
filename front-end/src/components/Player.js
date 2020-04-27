@@ -7,8 +7,10 @@ function Player() {
 
   return (
     <>
-      <NavbarComponent/>
-      {/* <img src="../../public/fake_song.PNG"></img> */}
+      <NavbarComponent />
+      <div className="song-player-container">
+        <img src={require('../fake_song.PNG')} alt="song player" />
+      </div>
     </>
   );
 }
