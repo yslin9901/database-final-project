@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import Signup from './Signup';
 import '../App.css';
 
-import Slider from './Slider';    
-
-function MomentModal(props) {
+function SignupModal(props) {
 
   const [show, setShow] = useState(false);
 
@@ -15,30 +13,34 @@ function MomentModal(props) {
   const handleSave = () => {
     setShow(false);
   };
+  const style = {
+    marginRight: '30px',
+    color: 'white'
+  }
 
   return (
     <div className="modal-button">
-      <Button variant="primary" onClick={handleShow} className="btn-lg">
-        {props.name}
+      <Button variant="Secondary" onClick={handleShow} className="btn" style={style}>
+        註冊
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Preferences</Modal.Title>
+          <Modal.Title>註冊</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Slider title="選擇歌單長度(分鐘)" />
+          <Signup />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             關閉
           </Button>
           <Button variant="primary" onClick={handleSave}>
-            <Link to="/player" className="link">開始播放</Link>
+            註冊
           </Button>
         </Modal.Footer>
       </Modal>
     </div>
   );
 }
-export default MomentModal;
+export default SignupModal;

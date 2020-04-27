@@ -1,13 +1,15 @@
 import React from 'react';
+import NavbarComponent from './NavbarComponent';
 import '../App.css';
 
 
 function Player() {
 
   return (
-    <div className="modal-button">
-      player page
-    </div>
+    <>
+      <NavbarComponent/>
+      {/* <img src="../../public/fake_song.PNG"></img> */}
+    </>
   );
 }
 export default Player;
