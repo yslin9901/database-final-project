@@ -1,5 +1,6 @@
 import React from 'react';
 import MomentModal from './components/MomentModal';
+import ImportSongModdal from './components/ImportSongModal';
 import NavbarComponent from './components/NavbarComponent';
 import './App.css';
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <NavbarComponent />
       <div className="App">
+        <ImportSongModdal />
         <div className="moments-container">
           <MomentModal name="路跑" />
           <MomentModal name="健身" />
