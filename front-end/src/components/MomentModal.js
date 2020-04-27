@@ -3,6 +3,8 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import '../App.css';
 
+import Slider from './Slider';    
+
 function Example(props) {
 
   const [show, setShow] = useState(false);
@@ -24,15 +26,14 @@ function Example(props) {
           <Modal.Title>Preferences</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* <SettingContainer /> */}
-          <div>blank modal</div>
+          <Slider title="選擇歌單長度(分鐘)" />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            關閉
           </Button>
           <Button variant="primary" onClick={handleSave}>
-            Ok
+            開始播放
           </Button>
         </Modal.Footer>
       </Modal>
