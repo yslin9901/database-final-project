@@ -13,6 +13,7 @@
 
 .moments-container>div {
   flex: 0 50%;
+  margin-top: 20px;
 }
 
 

@@ -1,17 +1,17 @@
 import React from 'react';
-import Moment from './components/Moment'
+import MomentModal from './components/MomentModal'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <div className="moments-container">
-        <Moment name="路跑"/>
-        <Moment name="健身"/>
-        <Moment name="工作"/>
-        <Moment name="晚餐"/>
-        <Moment name="派對"/>
-        <Moment name="清晨"/>
+        <MomentModal name="路跑"/>
+        <MomentModal name="健身"/>
+        <MomentModal name="工作"/>
+        <MomentModal name="晚餐"/>
+        <MomentModal name="派對"/>
+        <MomentModal name="清晨"/>
       </div>
     </div>
   );
