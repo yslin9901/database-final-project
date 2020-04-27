@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-import Slider from './Slider';    
+import Slider from './Slider';
 
 function MomentModal(props) {
 
@@ -12,9 +12,9 @@ function MomentModal(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleSave = () => {
-    setShow(false);
-  };
+  // const handleSave = () => {
+  //   setShow(false);
+  // };
 
   return (
     <div className="modal-button">
@@ -33,9 +33,7 @@ function MomentModal(props) {
           <Button variant="secondary" onClick={handleClose}>
             關閉
           </Button>
-          <Button variant="primary" onClick={handleSave}>
-            <Link to="/player" className="link">開始播放</Link>
-          </Button>
+          <Link to="/player" className="link" style={{backgroundColor: '#03a1fc', padding: '8px', borderRadius: '3px'}}>開始播放</Link>
         </Modal.Footer>
       </Modal>
     </div>
