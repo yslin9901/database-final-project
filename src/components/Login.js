@@ -28,7 +28,11 @@ function Login() {
     //   })
     axios.get(`http://127.0.0.1:5000/login?username=${userName}&password=${password}`)
       .then(res => {
-        console.log(res);
+        if(res.data.error === false){
+          alert(`Hello, ${res.data.data.username}`)
+        } else {
+          alert('something wrong')
+        }
       }).catch(err => {
         console.log(err);
       })

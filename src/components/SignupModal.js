@@ -20,7 +20,11 @@ function SignupModal(props) {
     console.log('userName = ', userName)
     axios.get(`http://127.0.0.1:5000/register?username=${userName}&password=${password}`)
       .then(res => {
-        console.log(res);
+        if(res.data.error === false){
+          alert(`Register successfully!`)
+        } else {
+          alert('something wrong')
+        }
       }).catch(err => {
         console.log(err);
       })
