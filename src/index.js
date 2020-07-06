@@ -12,7 +12,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/player"><Player /></Route>
       <Route path="/collection"><Collection /></Route>
-      <Route path="/"><App /></Route>
+      <Route exact path="/"><App /></Route>
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')
