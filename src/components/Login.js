@@ -20,13 +20,10 @@ function Login() {
     const userName = userNameInput.current.value
     const password = passwordInput.current.value
 
-    // axios.post('http://127.0.0.1:5000/login', { username: userName, password: password })
-    //   .then(res => {
-    //     console.log(res);
-    //   }).catch(err => {
-    //     console.log(err);
-    //   })
-    axios.get(`http://127.0.0.1:5000/login?username=${userName}&password=${password}`)
+    axios.post('http://127.0.0.1:5000/login',
+     { username: userName, password: password },
+     { headers: {'Content-Type': 'text/plain'}}
+    )
       .then(res => {
         if(res.data.error === false){
           alert(`Hello, ${res.data.data.username}`)
@@ -36,6 +33,16 @@ function Login() {
       }).catch(err => {
         console.log(err);
       })
+    // axios.get(`http://127.0.0.1:5000/login?username=${userName}&password=${password}`)
+    //   .then(res => {
+    //     if(res.data.error === false){
+    //       alert(`Hello, ${res.data.data.username}`)
+    //     } else {
+    //       alert('something wrong')
+    //     }
+    //   }).catch(err => {
+    //     console.log(err);
+    //   })
   }
 
   let handleSubmit = e => {

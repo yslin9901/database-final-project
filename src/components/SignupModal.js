@@ -17,9 +17,22 @@ function SignupModal(props) {
   const handleSave = () => {
     const userName = userNameInput.current.value
     const password = passwordInput.current.value
-    console.log('userName = ', userName)
-    axios.get(`http://127.0.0.1:5000/register?username=${userName}&password=${password}`)
+    // axios.get(`http://127.0.0.1:5000/register?username=${userName}&password=${password}`)
+    //   .then(res => {
+    //     if(res.data.error === false){
+    //       alert(`Register successfully!`)
+    //     } else {
+    //       alert('something wrong')
+    //     }
+    //   }).catch(err => {
+    //     console.log(err);
+    //   })
+
+    axios.post('http://127.0.0.1:5000/register',
+    { username: userName, password: password },
+    { headers: {'Content-Type': 'text/plain'}})
       .then(res => {
+        console.log(res.data)
         if(res.data.error === false){
           alert(`Register successfully!`)
         } else {
@@ -28,6 +41,7 @@ function SignupModal(props) {
       }).catch(err => {
         console.log(err);
       })
+
     setShow(false);
   };
   const style = {
