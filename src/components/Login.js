@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux'
+import {STORE_USER_NAME} from '../type';
 
 import '../App.css';
 
@@ -15,6 +17,10 @@ function Login() {
   let userNameInput = React.createRef(); 
   let passwordInput = React.createRef(); 
   axios.defaults.withCredentials = true;
+
+  const state = useSelector(state => state);
+  const dispatch = useDispatch();
+
   const getData = () => {
     /* 3. Get Ref Value here */
     const userName = userNameInput.current.value
@@ -27,7 +33,11 @@ function Login() {
           if(res.data.error){
             console.log(res.data)
           } else {
-            console.log(res.data.data.username)
+            const user_name = res.data.data.username
+            dispatch({
+              type: STORE_USER_NAME,
+              payload: {user_name},
+            })
           }
         })
         .catch(err => console.log(err));

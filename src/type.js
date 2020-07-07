@@ -1,0 +1,1 @@
+export const STORE_USER_NAME = 'sotre_user_name';
