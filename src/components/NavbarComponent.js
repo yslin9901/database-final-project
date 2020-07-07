@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Login from './Login';
 import SignupModal from './SignupModal';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../App.css';
 
 function NavbarComponent() {
@@ -12,6 +13,23 @@ function NavbarComponent() {
     marginTop: '7px',
     color: 'white   '
   }
+
+  
+
+  useEffect(() => {
+    let api = 'http://127.0.0.1:5000/userinfo'
+    axios
+      .get(api)
+      // {error: true, msg: "Not log in!"}
+      .then(res => {
+        if(res.data.error){
+          console.log(res.data)
+        } else {
+          console.log(res.data.username)
+        }
+      })
+      .catch(err => console.log(err));
+  });
   return (
     <div>
       <Navbar bg="dark" variant="dark">

@@ -14,35 +14,38 @@ function Login() {
   /* 1. Initialize Ref */
   let userNameInput = React.createRef(); 
   let passwordInput = React.createRef(); 
-
-  let getData = () => {
+  axios.defaults.withCredentials = true;
+  const getData = () => {
     /* 3. Get Ref Value here */
     const userName = userNameInput.current.value
     const password = passwordInput.current.value
-
+    const getUserInfo = () => {
+      const api = 'http://127.0.0.1:5000/userinfo'
+      axios
+        .get(api, { headers: {'Content-Type': 'text/plain'}})
+        .then(res => {
+          if(res.data.error){
+            console.log(res.data)
+          } else {
+            console.log(res.data.data.username)
+          }
+        })
+        .catch(err => console.log(err));
+    }
     axios.post('http://127.0.0.1:5000/login',
-     { username: userName, password: password },
-     { headers: {'Content-Type': 'text/plain'}}
+      { username: userName, password: password },
+      { headers: {'Content-Type': 'text/plain'}}
     )
       .then(res => {
         if(res.data.error === false){
-          alert(`Hello, ${res.data.data.username}`)
+          getUserInfo()
+          console.log(res.data)
         } else {
           alert('something wrong')
         }
       }).catch(err => {
         console.log(err);
       })
-    // axios.get(`http://127.0.0.1:5000/login?username=${userName}&password=${password}`)
-    //   .then(res => {
-    //     if(res.data.error === false){
-    //       alert(`Hello, ${res.data.data.username}`)
-    //     } else {
-    //       alert('something wrong')
-    //     }
-    //   }).catch(err => {
-    //     console.log(err);
-    //   })
   }
 
   let handleSubmit = e => {
@@ -55,7 +58,7 @@ function Login() {
         {/* /* 2. Attach Ref to FormControl component */}
         <FormControl ref={userNameInput} type="text" placeholder="帳號" className=" mr-sm-2" />
         <FormControl ref={passwordInput} type="text" placeholder="密碼" className=" mr-sm-2" />
-        <Button type="submit" onClick={() => getData()}>登入</Button>
+        <Button type="submit" onClick={getData}>登入</Button>
       </Form>
     </div>
   );
