@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import {useSelector, useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {STORE_USER_NAME} from '../type';
 
 import '../App.css';
@@ -18,7 +18,6 @@ function Login() {
   let passwordInput = React.createRef(); 
   axios.defaults.withCredentials = true;
 
-  const state = useSelector(state => state);
   const dispatch = useDispatch();
 
   const getData = () => {
@@ -49,7 +48,6 @@ function Login() {
       .then(res => {
         if(res.data.error === false){
           getUserInfo()
-          console.log(res.data)
         } else {
           alert('something wrong')
         }

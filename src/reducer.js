@@ -1,6 +1,6 @@
 import {STORE_USER_NAME} from './type';
 const INITIAL_STATE = {
-  user_name: 'admin',
+  user_name: '',
 };
 
 const Reducer = (state = INITIAL_STATE, action) => {

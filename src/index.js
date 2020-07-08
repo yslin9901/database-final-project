@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from './store';
 import * as serviceWorker from "./serviceWorker";
-console.log(store.getState())
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

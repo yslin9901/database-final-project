@@ -6,29 +6,35 @@ import SignupModal from './SignupModal';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
+import {useSelector, useDispatch} from 'react-redux'
+import {STORE_USER_NAME} from '../type'
 
 function NavbarComponent() {
   const style = {
     marginRight: '10px',
     marginTop: '7px',
-    color: 'white   '
+    color: 'white'
   }
 
-  
-
+  axios.defaults.withCredentials = true;
+  // const state = useSelector(state => state);
+  const dispatch = useDispatch()
   useEffect(() => {
-    let api = 'http://127.0.0.1:5000/userinfo'
-    axios
-      .get(api)
-      // {error: true, msg: "Not log in!"}
-      .then(res => {
-        if(res.data.error){
-          console.log(res.data)
-        } else {
-          console.log(res.data.username)
-        }
-      })
-      .catch(err => console.log(err));
+    const api = 'http://127.0.0.1:5000/userinfo'
+      axios
+        .get(api, { headers: {'Content-Type': 'text/plain'}})
+        .then(res => {
+          if(res.data.error){
+            console.log(res.data)
+          } else {
+            const user_name = res.data.data.username
+            dispatch({
+              type: STORE_USER_NAME,
+              payload: {user_name},
+            })
+          }
+        })
+        .catch(err => console.log(err));
   });
   return (
     <div>
