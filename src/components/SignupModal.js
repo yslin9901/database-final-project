@@ -18,9 +18,8 @@ function SignupModal(props) {
     const userName = userNameInput.current.value
     const password = passwordInput.current.value
 
-    axios.post('http://127.0.0.1:5000/register',
-    { username: userName, password: password },
-    { headers: {'Content-Type': 'text/plain'}}
+    axios.post('/api/register',
+    { username: userName, password: password }
     )
       .then(res => {
         console.log(res.data)

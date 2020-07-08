@@ -20,9 +20,9 @@ function NavbarComponent() {
   // const state = useSelector(state => state);
   const dispatch = useDispatch()
   useEffect(() => {
-    const api = 'http://127.0.0.1:5000/userinfo'
+      const api = '/api/userinfo'
       axios
-        .get(api, { headers: {'Content-Type': 'text/plain'}})
+        .get(api)
         .then(res => {
           if(res.data.error){
             console.log(res.data)
