@@ -17,7 +17,7 @@ function NavbarComponent() {
   
 
   useEffect(() => {
-    let api = 'http://127.0.0.1:5000/userinfo'
+    let api = '/api/userinfo'
     axios
       .get(api)
       // {error: true, msg: "Not log in!"}
@@ -25,7 +25,7 @@ function NavbarComponent() {
         if(res.data.error){
           console.log(res.data)
         } else {
-          console.log(res.data.username)
+          console.log(res.data.data.username)
         }
       })
       .catch(err => console.log(err));

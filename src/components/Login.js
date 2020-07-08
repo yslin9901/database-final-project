@@ -20,9 +20,9 @@ function Login() {
     const userName = userNameInput.current.value
     const password = passwordInput.current.value
     const getUserInfo = () => {
-      const api = 'http://127.0.0.1:5000/userinfo'
+      const api = '/api/userinfo'
       axios
-        .get(api, { headers: {'Content-Type': 'text/plain'}})
+        .get(api)
         .then(res => {
           if(res.data.error){
             console.log(res.data)
@@ -32,9 +32,8 @@ function Login() {
         })
         .catch(err => console.log(err));
     }
-    axios.post('http://127.0.0.1:5000/login',
-      { username: userName, password: password },
-      { headers: {'Content-Type': 'text/plain'}}
+    axios.post('/api/login',
+      { username: userName, password: password }
     )
       .then(res => {
         if(res.data.error === false){
