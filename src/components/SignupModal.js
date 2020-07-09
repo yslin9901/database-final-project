@@ -26,7 +26,7 @@ function SignupModal(props) {
         if(res.data.error === false){
           alert(`Register successfully!`)
         } else {
-          alert('something wrong')
+          alert(res.data.msg)
         }
       }).catch(err => {
         console.log(err);
