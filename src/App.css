@@ -20,6 +20,12 @@
   color: white;
   text-decoration: none;
 }
+.logout {
+  color: white;
+  text-decoration: none;
+  margin-left: 50px;
+  cursor: pointer;
+}
 .link:hover {
   color: white;
   text-decoration: none;

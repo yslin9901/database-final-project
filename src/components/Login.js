@@ -3,8 +3,8 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-import {useDispatch} from 'react-redux'
-import {STORE_USER_NAME} from '../type';
+import { useDispatch } from 'react-redux'
+import { STORE_USER_NAME } from '../type';
 
 import '../App.css';
 
@@ -14,8 +14,8 @@ import '../App.css';
 
 function Login() {
   /* 1. Initialize Ref */
-  let userNameInput = React.createRef(); 
-  let passwordInput = React.createRef(); 
+  let userNameInput = React.createRef();
+  let passwordInput = React.createRef();
   axios.defaults.withCredentials = true;
 
   const dispatch = useDispatch();
@@ -29,13 +29,13 @@ function Login() {
       axios
         .get(api)
         .then(res => {
-          if(res.data.error){
+          if (res.data.error) {
             console.log(res.data)
           } else {
             const user_name = res.data.data.username
             dispatch({
               type: STORE_USER_NAME,
-              payload: {user_name},
+              payload: { user_name },
             })
           }
         })
@@ -45,10 +45,11 @@ function Login() {
       { username: userName, password: password }
     )
       .then(res => {
-        if(res.data.error === false){
+        if (res.data.error === false) {
+          alert('Login Successfully!')
           getUserInfo()
         } else {
-          alert('something wrong')
+          alert(res.data.msg)
         }
       }).catch(err => {
         console.log(err);
@@ -64,7 +65,7 @@ function Login() {
       <Form inline onSubmit={handleSubmit}>
         {/* /* 2. Attach Ref to FormControl component */}
         <FormControl ref={userNameInput} type="text" placeholder="帳號" className=" mr-sm-2" />
-        <FormControl ref={passwordInput} type="text" placeholder="密碼" className=" mr-sm-2" />
+        <FormControl ref={passwordInput} type="password" placeholder="密碼" className=" mr-sm-2" />
         <Button type="submit" onClick={getData}>登入</Button>
       </Form>
     </div>
