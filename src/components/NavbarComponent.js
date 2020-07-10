@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Login from './Login';
 import SignupModal from './SignupModal';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 import { useDispatch, useSelector } from 'react-redux'
@@ -37,6 +37,7 @@ function NavbarComponent() {
       .catch(err => console.log(err));
   });
 
+  let history = useHistory();
   const handleLogout = () => {
     const api = '/api/logout'
     axios
@@ -51,6 +52,9 @@ function NavbarComponent() {
             type: STORE_USER_NAME,
             payload: { user_name },
           })
+          // route to home page
+          console.log(history)
+          history.replace('/')
         }
       })
       .catch(err => console.log(err));
