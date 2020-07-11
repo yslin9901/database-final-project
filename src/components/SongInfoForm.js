@@ -10,7 +10,7 @@ function SongInfoForm() {
   const handleClick = atmo => {
     let type;
     switch(atmo){
-      case 'run':{
+      case 'jogging':{
         type = '路跑'
         break;
       }
@@ -18,7 +18,7 @@ function SongInfoForm() {
         type = '健身'
         break;
       }
-      case 'work':{
+      case 'working':{
         type = '工作'
         break;
       }
@@ -56,9 +56,9 @@ function SongInfoForm() {
           <Form.Label>情境</Form.Label>
           <Form.Control placeholder="輸入情境" ref={atmosphereField} />
           <DropdownButton style={{marginTop: '10px', marginLeft: '75%'}}id="dropdown-basic-button" title="現有情境">
-            <Dropdown.Item onClick={()=>{handleClick('run')}}>路跑</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleClick('jogging')}}>路跑</Dropdown.Item>
             <Dropdown.Item onClick={()=>{handleClick('workout')}}>健身</Dropdown.Item>
-            <Dropdown.Item onClick={()=>{handleClick('work')}}>工作</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleClick('working')}}>工作</Dropdown.Item>
             <Dropdown.Item onClick={()=>{handleClick('dinner')}}>晚餐</Dropdown.Item>
             <Dropdown.Item onClick={()=>{handleClick('party')}}>派對</Dropdown.Item>
             <Dropdown.Item onClick={()=>{handleClick('morning')}}>清晨</Dropdown.Item>

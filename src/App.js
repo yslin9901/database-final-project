@@ -19,13 +19,13 @@ function App() {
       <div className="App">
         <ImportSongModdal />
         <div className="moments-container">
-          <div onClick={() => handleClick('run')}>
+          <div onClick={() => handleClick('jogging')}>
             <MomentModal name="路跑" />
           </div>
           <div onClick={() => handleClick('workout')} >
             <MomentModal name="健身" />
           </div>
-          <div onClick={() => handleClick('work')}>
+          <div onClick={() => handleClick('working')}>
             <MomentModal name="工作" />
           </div>
           <div onClick={() => handleClick('dinner')}>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux'
@@ -26,6 +27,9 @@ function MomentModal(props) {
     console.log(atmosphereType);
     console.log(duration)
     // send request
+    axios.get(`/api/get_songs?atmosphere=${atmosphereType}&duration=${duration}`)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
   };
 
   return (
