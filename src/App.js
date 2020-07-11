@@ -1,5 +1,6 @@
 import React from 'react';
 import MomentModal from './components/MomentModal';
+import SongPreferenceModal from './components/SongPreferenceModal'
 import ImportSongModdal from './components/ImportSongModal';
 import NavbarComponent from './components/NavbarComponent';
 import { useDispatch } from 'react-redux'
@@ -38,6 +39,7 @@ function App() {
             <MomentModal name="清晨" />
           </div>  
         </div>
+        <SongPreferenceModal/>
       </div>
     </>
   );

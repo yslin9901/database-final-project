@@ -9,9 +9,12 @@
 .moments-container {
   display: flex;
   flex-wrap: wrap;
+  border: 2px solid grey;
+  padding: 20px;
+  margin-right: 30px;
 }
 
-.moments-container>div {
+.moments-container > div {
   flex: 0 50%;
   margin-top: 20px;
 }
@@ -29,7 +32,7 @@
 .link:hover {
   color: white;
   text-decoration: none;
-} 
+}
 
 .song-player-container {
   margin-top: 50px;
@@ -38,5 +41,5 @@
   align-items: center;
 }
 .song-player-container > img {
-  max-height:650px;
+  max-height: 650px;
 }
