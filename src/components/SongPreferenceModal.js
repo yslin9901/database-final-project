@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import { useSelector,useDispatch } from 'react-redux'
 import SongPreference from './SongPreference'
 import '../App.css';
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import Slider from './Slider';
+import ContinuousSlider from './ContinuousSlider';
 
 import "../App.css";
 
@@ -10,13 +10,13 @@ function SongPreference() {
     <>
       <Form>
         <Form.Group controlId="formBasicEmail">
-          <Slider title="Tempo" />
+          <ContinuousSlider title="Tempo" step={1} max={250}/>
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
-          <Slider title="Energy" />
+          <ContinuousSlider title="Energy" step={0.01} max={1}/>
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
-          <Slider title="Liveness" />
+          <ContinuousSlider title="Liveness" step={0.01} max={1}/>
         </Form.Group>
       </Form>
     </>
