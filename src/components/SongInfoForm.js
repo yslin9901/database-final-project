@@ -11,10 +11,9 @@ function SongInfoForm() {
           <Form.Label>歌曲名稱</Form.Label>
           <Form.Control placeholder="輸入歌名" />
         </Form.Group>
-
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>bpm</Form.Label>
-          <Form.Control placeholder="輸入 bpm" />
+          <Form.Label>歌手</Form.Label>
+          <Form.Control placeholder="輸入歌手" />
         </Form.Group>
 
         <Form.Group controlId="formBasicEmail">
@@ -22,11 +21,11 @@ function SongInfoForm() {
           <Form.Control placeholder="輸入情境" />
         </Form.Group>
 
-        <Form.File
+        {/* <Form.File
           id="custom-file"
           label="上傳歌曲"
           custom
-        />
+        /> */}
       </Form>
     </div>
   );
