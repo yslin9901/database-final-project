@@ -1,9 +1,45 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';
+import React, {useRef} from "react";
+import Form from "react-bootstrap/Form";
+import Dropdown from "react-bootstrap/Dropdown"
+import DropdownButton from "react-bootstrap/DropdownButton"
 
-import '../App.css';
+import "../App.css";
 
 function SongInfoForm() {
+  const atmosphereField = useRef(null);
+  const handleClick = atmo => {
+    let type;
+    switch(atmo){
+      case 'run':{
+        type = '路跑'
+        break;
+      }
+      case 'workout':{
+        type = '健身'
+        break;
+      }
+      case 'work':{
+        type = '工作'
+        break;
+      }
+      case 'party':{
+        type = '派對'
+        break;
+      }
+      case 'dinner':{
+        type = '晚餐'
+        break;
+      }
+      case 'morning':{
+        type = '清晨'
+        break;
+      }
+      default: {
+        console.log('wrong type')
+      }
+    }
+    atmosphereField.current.value = type
+  }
   return (
     <div>
       <Form>
@@ -18,7 +54,15 @@ function SongInfoForm() {
 
         <Form.Group controlId="formBasicEmail">
           <Form.Label>情境</Form.Label>
-          <Form.Control placeholder="輸入情境" />
+          <Form.Control placeholder="輸入情境" ref={atmosphereField} />
+          <DropdownButton style={{marginTop: '10px', marginLeft: '75%'}}id="dropdown-basic-button" title="現有情境">
+            <Dropdown.Item onClick={()=>{handleClick('run')}}>路跑</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleClick('workout')}}>健身</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleClick('work')}}>工作</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleClick('dinner')}}>晚餐</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleClick('party')}}>派對</Dropdown.Item>
+            <Dropdown.Item onClick={()=>{handleClick('morning')}}>清晨</Dropdown.Item>
+          </DropdownButton>
         </Form.Group>
 
         {/* <Form.File
@@ -32,4 +76,3 @@ function SongInfoForm() {
 }
 
 export default SongInfoForm;
-
