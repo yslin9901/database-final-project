@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import { storeAtmosphereType } from '../actions'
 import '../App.css';
 
 import Slider from './Slider';
@@ -10,18 +11,18 @@ import Slider from './Slider';
 function MomentModal(props) {
   const atmosphereType = useSelector(state => state.atmosphere_type);
   const [show, setShow] = useState(false);
-  const [atmoTypeState, setAtmoTypeState] = useState('');
+  const dispatch = useDispatch();
 
 
   const handleClose = () => {
+    // reset atmosphere
+    dispatch(storeAtmosphereType(''))
     setShow(false)
-
   };
   const handleShow = () => setShow(true);
   const handleSave = () => {
     setShow(false);
-    setAtmoTypeState(atmosphereType)
-    console.log(atmoTypeState);
+    console.log(atmosphereType);
   };
 
   return (
