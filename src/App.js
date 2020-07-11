@@ -9,7 +9,6 @@ import './App.css';
 function App() {
   const dispatch = useDispatch();
   const handleClick = type => {
-    console.log('clicked')
     // store atmosphere
     dispatch(storeAtmosphereType(type))
   }

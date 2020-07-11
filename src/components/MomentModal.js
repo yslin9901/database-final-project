@@ -10,6 +10,7 @@ import Slider from './Slider';
 
 function MomentModal(props) {
   const atmosphereType = useSelector(state => state.atmosphere_type);
+  const duration = useSelector(state => state.playlist_duration);
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
@@ -23,6 +24,8 @@ function MomentModal(props) {
   const handleSave = () => {
     setShow(false);
     console.log(atmosphereType);
+    console.log(duration)
+    // send request
   };
 
   return (

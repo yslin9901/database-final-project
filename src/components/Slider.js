@@ -2,6 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import { useDispatch } from 'react-redux'
+import { playlistDuration } from '../actions'
 
 const useStyles = makeStyles({
   root: {
@@ -14,6 +16,7 @@ function valuetext(value) {
 }
 
 export default function DiscreteSlider(props) {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const containerStyle = {
     marginBottom: '10px',
@@ -27,6 +30,11 @@ export default function DiscreteSlider(props) {
     justifyContent: 'center',
     marginLeft: '20%'
   };
+
+  const handleChange = (e, val) => {
+    dispatch(playlistDuration(val));
+  }
+
   return (
     <div className={classes.root} style={containerStyle}>
       <Typography id="discrete-slider" gutterBottom style={titleStyle}>
@@ -42,7 +50,7 @@ export default function DiscreteSlider(props) {
           marks
           min={5}
           max={60}
-          // onChange={handleChange}
+          onChange={handleChange}
         />
       </div>
     </div>
