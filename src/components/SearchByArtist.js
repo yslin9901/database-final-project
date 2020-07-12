@@ -10,8 +10,8 @@ const SearchByArtist = () => {
   const dispatch = useDispatch();
   const handleSearch = () => {
     const artist = searchByArtistField.current.value;
-    const api = '/search';
-    axios.get(api, {artist: artist})
+    const api = `/search?artist=${artist}`;
+    axios.get(api)
     .then(res => {
       dispatch(playlistInfo(res.data));
     })
