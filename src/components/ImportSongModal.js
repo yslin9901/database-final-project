@@ -3,68 +3,58 @@ import { useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import SongInfoForm from "./SongInfoForm";
-import axios from "axios";
+import { useDispatch } from 'react-redux'
+import { importSongDuration } from '../actions'
 import "../App.css";
 
-function ImportSongModal(props) {
+function ImportSongModal() {
   const name = useSelector((state) => state.import_song_name);
   const artist = useSelector((state) => state.import_song_artist);
   const atmo = useSelector((state) => state.import_song_atmosphere);
-
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleSave = () => {
     console.log(atmo);
-    //get videoId
-    axios
-      .get(
-        "https://www.googleapis.com/youtube/v3/search?key=AIzaSyACXMpIuPD38LSqpHeXr8nY9kj8cR54vEg",
-        {
-          params: {
-            part: "snippet",
-            q: artist + name,
-            type: "video",
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data.items[0]["id"]["videoId"]); //video id
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-
-    //get duration
-    axios
-      .get(
-        "https://www.googleapis.com/youtube/v3/videos?key=AIzaSyACXMpIuPD38LSqpHeXr8nY9kj8cR54vEg",
-        {
-          params: {
-            part: "snippet,contentDetails",
-            id: "FonjL7DQAUQ", //need to modify video id
-          },
-        }
-      )
-      .then((res) => {
-        var origin_duration = res.data.items[0]["contentDetails"]["duration"];
-        //console.log(origin_duration) //PT5M32S
-        var time = origin_duration.split("PT");
-        var min = time[1].split("M");
-        var sec = min[1].split("S");
-
-        var duration = Number(min[0]) * 60 + Number(sec[0]);
-        console.log(duration); //duration of this song
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    fetchData();
     setShow(false);
   };
   const style = {
     marginRight: "30px",
     color: "white",
+  };
+
+  const fetchData = () => {
+    const api_key = "AIzaSyACXMpIuPD38LSqpHeXr8nY9kj8cR54vEg";
+    // get videoId
+    fetch(
+      `https://www.googleapis.com/youtube/v3/search?q=${
+      artist + name
+      }&part=snippet&type=video&key=${api_key}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("video id =", data.items[0]["id"]["videoId"]);
+        const videoId = data.items[0]["id"]["videoId"];
+        const api = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${videoId}&key=${api_key}`;
+        // get duration
+        fetch(api)
+          .then((res) => res.json())
+          .then((data) => {
+            let origin_duration = data.items[0]["contentDetails"]["duration"];
+            var time = origin_duration.split("PT");
+            var min = time[1].split("M");
+            var sec = min[1].split("S");
+            var duration = Number(min[0]) * 60 + Number(sec[0]);
+            console.log("duration = ", duration);
+            dispatch(importSongDuration(duration));
+            // send backend request here
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

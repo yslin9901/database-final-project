@@ -1,6 +1,6 @@
 import { STORE_USER_NAME, STORE_ATMOSPHERE_TYPE, PLAYLIST_DURATION, PLAYLIST_INFO,
 SONG_TEMPO, SONG_ENERGY, SONG_LIVENESS,
-IMPORT_SONG_NAME, IMPORT_SONG_ARTIST, IMPORT_SONG_ATMOSPHERE } from './type';
+IMPORT_SONG_NAME, IMPORT_SONG_ARTIST, IMPORT_SONG_ATMOSPHERE, IMPORT_SONG_DURATION } from './type';
 
 export const store_user_name = user_name => {
   return {
@@ -69,5 +69,12 @@ export const importSongAtmosphere = atmo => {
   return {
     type: IMPORT_SONG_ATMOSPHERE,
     payload: { atmo },
+  };
+};
+
+export const importSongDuration = duration => {
+  return {
+    type: IMPORT_SONG_DURATION,
+    payload: { duration },
   };
 };
