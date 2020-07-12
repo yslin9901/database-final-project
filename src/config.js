@@ -1,4 +1,4 @@
 const config = () => ({
-  api_key: 'AIzaSyBf8gv_sZhT6PxEthMgvm6dKVnvbg-f408',
+  api_key: 'AIzaSyCSAwaAxPe72738Pd9ksQd0FzKSm921g7o',
 });
 export default config();

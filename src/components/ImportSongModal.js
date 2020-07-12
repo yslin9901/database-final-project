@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import SongInfoForm from "./SongInfoForm";
 import { useDispatch } from 'react-redux'
 import { importSongDuration } from '../actions'
+import config from '../config';
 import "../App.css";
 
 function ImportSongModal() {
@@ -27,18 +28,17 @@ function ImportSongModal() {
   };
 
   const fetchData = () => {
-    const api_key = "AIzaSyACXMpIuPD38LSqpHeXr8nY9kj8cR54vEg";
     // get videoId
     fetch(
       `https://www.googleapis.com/youtube/v3/search?q=${
         artist + name
-      }&part=snippet&type=video&key=${api_key}`
+      }&part=snippet&type=video&key=${config.api_key}`
     )
       .then((res) => res.json())
       .then((data) => {
         console.log("video id =", data.items[0]["id"]["videoId"]);
         const videoId = data.items[0]["id"]["videoId"];
-        const api = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${videoId}&key=${api_key}`;
+        const api = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${videoId}&key=${config.api_key}`;
         // get duration
         fetch(api)
           .then((res) => res.json())
