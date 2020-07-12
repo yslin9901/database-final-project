@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import SongInfoForm from './SongInfoForm';
 import '../App.css';
 
 function ImportSongModal(props) {
+  const name = useSelector(state => state.import_song_name);
+  const artist = useSelector(state => state.import_song_artist)
+  const atmo = useSelector(state => state.import_song_atmosphere);
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleSave = () => {
+    console.log(name)
+    console.log(artist)
+    console.log(atmo)
     setShow(false);
   };
   const style = {

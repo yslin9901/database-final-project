@@ -1,5 +1,6 @@
 import { STORE_USER_NAME, STORE_ATMOSPHERE_TYPE, PLAYLIST_DURATION, 
-  PLAYLIST_INFO, SONG_TEMPO, SONG_ENERGY, SONG_LIVENESS } from './type';
+  PLAYLIST_INFO, SONG_TEMPO, SONG_ENERGY, SONG_LIVENESS,
+IMPORT_SONG_NAME, IMPORT_SONG_ARTIST, IMPORT_SONG_ATMOSPHERE } from './type';
 const INITIAL_STATE = {
   user_name: '',
   atmosphere_type: '',
@@ -7,7 +8,10 @@ const INITIAL_STATE = {
   playlist_info: [],
   tempo: '',
   energy: '',
-  liveness: ''
+  liveness: '',
+  import_song_name: '',
+  import_song_artist: '',
+  import_song_atmosphere: ''
 };
 
 const Reducer = (state = INITIAL_STATE, action) => {
@@ -59,6 +63,27 @@ const Reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         liveness: liveness
+      }
+    }
+    case IMPORT_SONG_NAME: {
+      const {name} = action.payload;
+      return {
+        ...state,
+        import_song_name: name      
+      }
+    }
+    case IMPORT_SONG_ARTIST: {
+      const {artist} = action.payload;
+      return {
+        ...state,
+        import_song_artist: artist
+      }
+    }
+    case IMPORT_SONG_ATMOSPHERE: {
+      const {atmo} = action.payload;
+      return {
+        ...state,
+        import_song_atmosphere: atmo
       }
     }
     default:
