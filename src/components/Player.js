@@ -10,20 +10,16 @@ function Player() {
   const [videoList, setVideoList] = useState([]);
 
   // get playlist from redux
-  // const playlist = useSelector(state => state.playlist_info);
-  // console.log(playlist);
+  const playlist = useSelector(state => state.playlist_info);
+  console.log(playlist);
 
   // fake playlist
-  const playlist = [{artistname: "Tempalay", songname: "そなちね"}, {artistname: "deca joins", songname: "海浪"}];
-  
-  // fake id
-  const fakeVideoId = ['Aa5onMizfco', 'FonjL7DQAUQ']
+  // const playlist = [{artistname: "Tempalay", songname: "そなちね"}, {artistname: "deca joins", songname: "海浪"}];
+
   useEffect(() => {
     for(let i=0; i<playlist.length; i++){
-      var song=playlist[i].artistname;
-      var artist=playlist[i].songname;
-  
-      // var temp = [];
+      let song=playlist[i].artistname;
+      let artist=playlist[i].songname;
       // get videoId
       fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${
         artist+song
@@ -31,10 +27,8 @@ function Player() {
       )
       .then((res) => res.json())
       .then((data) => {
-        // var id = data.items[0]["id"]["videoId"]
-        // fake id
-        setVideoList([...videoList, fakeVideoId])
-        // console.log(id) // video_id
+        let id = data.items[0]["id"]["videoId"]
+        setVideoList((videoList) => [...videoList, id])
       }).catch(e => {console.log(e)})
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,7 +36,6 @@ function Player() {
   
   console.log('video list = ', videoList)
 
-  //var target_url = 'http://www.youtube.com/embed?playlist=cbut2K6zvJY,7iw30sK2UCo,sYV5MTy0v1I';
   var target_url = 'http://www.youtube.com/embed?playlist=';
 
   // fake video_ID_list
