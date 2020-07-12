@@ -24,7 +24,6 @@ function MomentModal(props) {
   const handleSave = () => {
     axios.get(`/api/get_songs?atmosphere=${atmosphereType}&duration=${duration}`)
     .then(res => {
-      const playlistInfo = res.data;
       // stroe result to redux
       dispatch(playlistInfo(res.data));
     })
