@@ -7,7 +7,7 @@ import '../App.css';
 
 function Player() {
   // get playlist from redux
-    //const playlist = useSelector(state => state.playlist_info);
+  //const playlist = useSelector(state => state.playlist_info);
   //console.log(playlist);
 
   // fake playlist
@@ -19,7 +19,8 @@ function Player() {
     var artist=playlist[i].songname;
     console.log(song);
     console.log(artist);
-    //get videoId
+
+    // get videoId
     axios.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyACXMpIuPD38LSqpHeXr8nY9kj8cR54vEg',
     {
     params: {
@@ -30,18 +31,23 @@ function Player() {
     })
     .then(res => {
       var id = res.data.items[0]["id"]["videoId"]
-      console.log(id) //video id
-      //video_list.push(id) //failed to push it
-    }).catch(e => {console.log(e)})
-  }
-  
-  //console.log(video_id); //failed
+      console.log(id) // video_id
+      //video_list.push(id)  // failed to push it
+      //playlist[i].id = id; // failed to add a new key(id) in object(playlist)
 
+      // put video_id in database?
+    }).catch(e => {console.log(e)})
+
+  }
+  //console.log(video_id); //failed
 
   //var target_url = 'http://www.youtube.com/embed?playlist=cbut2K6zvJY,7iw30sK2UCo,sYV5MTy0v1I';
   var target_url = 'http://www.youtube.com/embed?playlist=';
 
-  video_list = ["Aa5onMizfco", "FonjL7DQAUQ"]; //fake_list
+  // fake_list
+  video_list = ["Aa5onMizfco", "FonjL7DQAUQ"];
+
+  //get playlist_url
   for(var i=0; i<video_list.length; i++){
     target_url = target_url + video_list[i] + ",";
   }
