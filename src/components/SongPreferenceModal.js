@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { playlistInfo } from '../actions'
 import Button from 'react-bootstrap/Button';
 import SongPreference from './SongPreference'
 
@@ -13,6 +15,7 @@ function SongPreferenceModal(props) {
   const energy = useSelector(state => state.energy)
   const liveness = useSelector(state => state.liveness)
   const duration = useSelector(state => state.playlist_duration);
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
@@ -20,11 +23,13 @@ function SongPreferenceModal(props) {
   };
   const handleShow = () => setShow(true);
   const handleSave = () => {
+    const api = `/api/customize_attributes?tempo=${tempo}&energy=${energy}&liveness=${liveness}&duration=${duration}`
+    axios.get(api)
+    .then(res => {
+      dispatch(playlistInfo(res.data));
+    })
+    .catch(err => console.log(err))
     
-    console.log(tempo)
-    console.log(energy)
-    console.log(liveness)
-    console.log(duration)
     setShow(false);
   };
 
