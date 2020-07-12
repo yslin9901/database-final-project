@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux'
 import { storeAtmosphereType, playlistInfo } from '../actions'
 import '../App.css';
-
 import Slider from './Slider';
 
 function MomentModal(props) {

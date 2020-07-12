@@ -1,4 +1,5 @@
-import { STORE_USER_NAME, STORE_ATMOSPHERE_TYPE, PLAYLIST_DURATION, PLAYLIST_INFO } from './type';
+import { STORE_USER_NAME, STORE_ATMOSPHERE_TYPE, PLAYLIST_DURATION, PLAYLIST_INFO,
+SONG_TEMPO, SONG_ENERGY, SONG_LIVENESS } from './type';
 
 export const store_user_name = user_name => {
   return {
@@ -25,5 +26,26 @@ export const playlistInfo = info => {
   return {
     type: PLAYLIST_INFO,
     payload: { info },
+  };
+};
+
+export const songTempo = tempo => {
+  return {
+    type: SONG_TEMPO,
+    payload: { tempo },
+  };
+};
+
+export const songEnergy = energy => {
+  return {
+    type: SONG_ENERGY,
+    payload: { energy },
+  };
+};
+
+export const songLiveness = liveness => {
+  return {
+    type: SONG_LIVENESS,
+    payload: { liveness },
   };
 };
