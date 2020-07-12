@@ -19,19 +19,28 @@ function ImportSongModal() {
   const handleShow = () => setShow(true);
   const handleSave = () => {
     console.log(atmo);
-    fetchData();
+    // fetchData();
+    fakeFetch()
     setShow(false);
   };
   const style = {
     marginRight: "30px",
     color: "white",
   };
+  const fakeFetch = () => {
+    const fake_duration = 30372
+    const api = `/api/add_song_to_database?songname=${name}&artistname=${artist}&atmosphere=${atmo}&duration=${fake_duration}`;
+    fetch(api)
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+  }
 
   const fetchData = () => {
     // get videoId
     fetch(
       `https://www.googleapis.com/youtube/v3/search?q=${
-        artist + name
+      artist + name
       }&part=snippet&type=video&key=${config.api_key}`
     )
       .then((res) => res.json())
@@ -51,17 +60,17 @@ function ImportSongModal() {
             console.log("duration = ", duration);
             dispatch(importSongDuration(duration));
             // send backend request here
-            const api = `/api/add_song_to_database?songname=${name}&artistname=${artist}&atmosphere=${atmo}&duration=${duration}`;
+            const fake_duration = 30372
+            const api = `/api/add_song_to_database?songname=${name}&artistname=${artist}&atmosphere=${atmo}&duration=${fake_duration}`;
             fetch(api)
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
+              .then(res => res.json())
+              .then(data => console.log(data))
+              .catch(err => console.log(err))
           })
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
-
   return (
     <div className="modal-button">
       <Button
@@ -71,7 +80,7 @@ function ImportSongModal() {
         style={style}
       >
         新增歌曲至資料庫
-      </Button>
+        </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -83,13 +92,14 @@ function ImportSongModal() {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             關閉
-          </Button>
+            </Button>
           <Button variant="primary" onClick={handleSave}>
             匯入
-          </Button>
+            </Button>
         </Modal.Footer>
       </Modal>
     </div>
   );
 }
+
 export default ImportSongModal;
