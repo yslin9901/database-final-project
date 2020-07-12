@@ -51,6 +51,11 @@ function ImportSongModal() {
             console.log("duration = ", duration);
             dispatch(importSongDuration(duration));
             // send backend request here
+            const api = `/api/add_song_to_database?songname=${name}&artistname=${artist}&atmosphere=${atmo}&duration=${duration}`;
+            fetch(api)
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
           })
           .catch((err) => console.log(err));
       })
