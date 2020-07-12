@@ -96,16 +96,16 @@ function SongInfoForm() {
   return (
     <div>
       <Form>
-        <Form.Group controlId="formBasicEmail">
+        <Form.Group>
           <Form.Label>歌曲名稱</Form.Label>
           <Form.Control ref={songField} onChange={handleSongChange} placeholder="輸入歌名" />
         </Form.Group>
-        <Form.Group controlId="formBasicEmail">
+        <Form.Group>
           <Form.Label>歌手</Form.Label>
           <Form.Control ref={artistField}onChange={handleArtistChange}  placeholder="輸入歌手" />
         </Form.Group>
 
-        <Form.Group controlId="formBasicEmail">
+        <Form.Group>
           <Form.Label>選擇情境</Form.Label>
           {/* <Form.Control placeholder="輸入情境" ref={atmosphereField} onChange={handleAtmoChange}/> */}
           <DropdownButton style={{marginTop: '10px'}}id="dropdown-basic-button" title="現有情境">
