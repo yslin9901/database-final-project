@@ -1,11 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
 import NavbarComponent from './NavbarComponent';
 import Button from 'react-bootstrap/Button';
 import '../App.css';
-//import axios from 'axios';
 
 
 function Player() {
+  // get playlist from redux
+  const playlist = useSelector(state => state.playlist_info);
+  console.log(playlist);
+
   var keyword = "deca joins";
   
   var base_url = 'http://www.youtube.com/embed?listType=search&list=';

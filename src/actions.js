@@ -1,4 +1,4 @@
-import { STORE_USER_NAME, STORE_ATMOSPHERE_TYPE, PLAYLIST_DURATION } from './type';
+import { STORE_USER_NAME, STORE_ATMOSPHERE_TYPE, PLAYLIST_DURATION, PLAYLIST_INFO } from './type';
 
 export const store_user_name = user_name => {
   return {
@@ -18,5 +18,12 @@ export const playlistDuration = duration => {
   return {
     type: PLAYLIST_DURATION,
     payload: { duration },
+  };
+};
+
+export const playlistInfo = info => {
+  return {
+    type: PLAYLIST_INFO,
+    payload: { info },
   };
 };

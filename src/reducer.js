@@ -1,8 +1,9 @@
-import { STORE_USER_NAME, STORE_ATMOSPHERE_TYPE, PLAYLIST_DURATION } from './type';
+import { STORE_USER_NAME, STORE_ATMOSPHERE_TYPE, PLAYLIST_DURATION, PLAYLIST_INFO } from './type';
 const INITIAL_STATE = {
   user_name: '',
   atmosphere_type: '',
   playlist_duration: '',
+  playlist_info: [],
 };
 
 const Reducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +27,13 @@ const Reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         playlist_duration: duration
+      }
+    }
+    case PLAYLIST_INFO: {
+      const {info} = action.payload;
+      return {
+        ...state,
+        playlist_info: info
       }
     }
     default:

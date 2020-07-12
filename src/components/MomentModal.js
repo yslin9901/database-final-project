@@ -4,7 +4,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux'
-import { storeAtmosphereType } from '../actions'
+import { storeAtmosphereType, playlistInfo } from '../actions'
 import '../App.css';
 
 import Slider from './Slider';
@@ -15,7 +15,6 @@ function MomentModal(props) {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
-
   const handleClose = () => {
     // reset atmosphere
     dispatch(storeAtmosphereType(''))
@@ -23,13 +22,14 @@ function MomentModal(props) {
   };
   const handleShow = () => setShow(true);
   const handleSave = () => {
-    setShow(false);
-    console.log(atmosphereType);
-    console.log(duration)
-    // send request
     axios.get(`/api/get_songs?atmosphere=${atmosphereType}&duration=${duration}`)
-    .then(res => console.log(res.data))
+    .then(res => {
+      const playlistInfo = res.data;
+      // stroe result to redux
+      dispatch(playlistInfo(res.data));
+    })
     .catch(err => console.log(err))
+    setShow(false);
   };
 
   return (
