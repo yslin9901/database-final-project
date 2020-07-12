@@ -6,19 +6,19 @@ import '../App.css';
 
 function Player() {
   // get playlist from redux
-  //const playlist = useSelector(state => state.playlist_info);
-  //console.log(playlist);
+  const playlist = useSelector(state => state.playlist_info);
+  console.log(playlist);
 
   // fake playlist
-  const playlist = [{artistname: "Tempalay", songname: "そなちね"}, {artistname: "deca joins", songname: "海浪"}];
+  //const playlist = [{artistname: "Tempalay", songname: "そなちね"}, {artistname: "deca joins", songname: "海浪"}];
   var video_list = [];
   
-  for(var i=0; i<playlist.length; i++){
+  for(let i=0; i<playlist.length; i++){
     var song=playlist[i].artistname;
     var artist=playlist[i].songname;
 
     const api_key = 'AIzaSyAVMV_1I1LLP8TmZSrt-p9UbyOmlO_w1DM';
-    //var temp = [];
+    // var temp = [];
     // get videoId
     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${
       artist+song
@@ -38,7 +38,7 @@ function Player() {
   video_list = ["Aa5onMizfco", "FonjL7DQAUQ"];
 
   //get playlist_url
-  for(var i=0; i<video_list.length; i++){
+  for(let i=0; i<video_list.length; i++){
     target_url = target_url + video_list[i] + ",";
   }
 

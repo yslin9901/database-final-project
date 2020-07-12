@@ -26,37 +26,37 @@ function ImportSongModal(props) {
   }
 
   //get videoId
-  axios.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyACXMpIuPD38LSqpHeXr8nY9kj8cR54vEg',
-  {
-  params: {
-  part: 'snippet',
-  q: artist+name,
-  type: 'video'
-  }
-  })
-  .then(res => {
-    console.log(res.data.items[0]["id"]["videoId"]) //video id
-  }).catch(e => {console.log(e)})
+  // axios.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyACXMpIuPD38LSqpHeXr8nY9kj8cR54vEg',
+  // {
+  // params: {
+  // part: 'snippet',
+  // q: artist+name,
+  // type: 'video'
+  // }
+  // })
+  // .then(res => {
+  //   console.log(res.data.items[0]["id"]["videoId"]) //video id
+  // }).catch(e => {console.log(e)})
 
-  //get duration
-  axios.get('https://www.googleapis.com/youtube/v3/videos?key=AIzaSyACXMpIuPD38LSqpHeXr8nY9kj8cR54vEg',
-  {
-  params: {
-  part: 'snippet,contentDetails',
-  id: 'FonjL7DQAUQ'//need to modify video id
-  }
-  })
-  .then(res => {
-    var origin_duration = res.data.items[0]["contentDetails"]["duration"]
-    //console.log(origin_duration) //PT5M32S
-    var time = origin_duration.split("PT")
-    var min = time[1].split("M")
-    var sec = min[1].split("S")
+  // //get duration
+  // axios.get('https://www.googleapis.com/youtube/v3/videos?key=AIzaSyACXMpIuPD38LSqpHeXr8nY9kj8cR54vEg',
+  // {
+  // params: {
+  // part: 'snippet,contentDetails',
+  // id: 'FonjL7DQAUQ'//need to modify video id
+  // }
+  // })
+  // .then(res => {
+  //   var origin_duration = res.data.items[0]["contentDetails"]["duration"]
+  //   //console.log(origin_duration) //PT5M32S
+  //   var time = origin_duration.split("PT")
+  //   var min = time[1].split("M")
+  //   var sec = min[1].split("S")
   
-    var duration = Number(min[0])*60 + Number(sec[0])
-    console.log(duration) //duration of this song
+  //   var duration = Number(min[0])*60 + Number(sec[0])
+  //   console.log(duration) //duration of this song
 
-  }).catch(e => {console.log(e)})
+  // }).catch(e => {console.log(e)})
 
   return (
     <div className="modal-button">
