@@ -53,7 +53,6 @@ function NavbarComponent() {
             payload: { user_name },
           })
           // route to home page
-          console.log(history)
           history.replace('/')
         }
       })

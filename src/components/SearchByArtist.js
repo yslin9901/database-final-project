@@ -4,16 +4,19 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { useDispatch } from 'react-redux'
 import { playlistInfo } from '../actions'
+import { useHistory } from 'react-router-dom';
 
 const SearchByArtist = () => {
+  let history = useHistory();
   const searchByArtistField = useRef(null);
   const dispatch = useDispatch();
   const handleSearch = () => {
     const artist = searchByArtistField.current.value;
-    const api = `/search?artist=${artist}`;
+    const api = `/api/search?artist=${artist}`;
     axios.get(api)
     .then(res => {
       dispatch(playlistInfo(res.data));
+      history.replace('/player')
     })
     .catch(err => console.log(err))
   }
