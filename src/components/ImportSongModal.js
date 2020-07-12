@@ -3,13 +3,15 @@ import { useSelector } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import SongInfoForm from "./SongInfoForm";
+import { useDispatch } from 'react-redux'
+import { importSongDuration } from '../actions'
 import "../App.css";
 
 function ImportSongModal() {
   const name = useSelector((state) => state.import_song_name);
   const artist = useSelector((state) => state.import_song_artist);
   const atmo = useSelector((state) => state.import_song_atmosphere);
-
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -47,6 +49,8 @@ function ImportSongModal() {
             var sec = min[1].split("S");
             var duration = Number(min[0]) * 60 + Number(sec[0]);
             console.log("duration = ", duration);
+            dispatch(importSongDuration(duration));
+            // send backend request here
           })
           .catch((err) => console.log(err));
       })
