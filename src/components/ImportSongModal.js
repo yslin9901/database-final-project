@@ -40,7 +40,7 @@ function ImportSongModal() {
     // get videoId
     fetch(
       `https://www.googleapis.com/youtube/v3/search?q=${
-      artist + name
+      artist + ' ' + name
       }&part=snippet&type=video&key=${config.api_key}`
     )
       .then((res) => res.json())
