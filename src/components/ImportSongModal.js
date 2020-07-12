@@ -19,8 +19,8 @@ function ImportSongModal() {
   const handleShow = () => setShow(true);
   const handleSave = () => {
     console.log(atmo);
-    // fetchData();
-    fakeFetch()
+    fetchData();
+    //fakeFetch()
     setShow(false);
   };
   const style = {
@@ -60,8 +60,8 @@ function ImportSongModal() {
             console.log("duration = ", duration);
             dispatch(importSongDuration(duration));
             // send backend request here
-            const fake_duration = 30372
-            const api = `/api/add_song_to_database?songname=${name}&artistname=${artist}&atmosphere=${atmo}&duration=${fake_duration}`;
+            // const fake_duration = 30372
+            const api = `/api/add_song_to_database?songname=${name}&artistname=${artist}&atmosphere=${atmo}&duration=${duration}`;
             fetch(api)
               .then(res => res.json())
               .then(data => console.log(data))
