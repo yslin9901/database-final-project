@@ -4,7 +4,6 @@ import NavbarComponent from './NavbarComponent';
 import Button from 'react-bootstrap/Button';
 import '../App.css';
 
-
 function Player() {
   // get playlist from redux
   //const playlist = useSelector(state => state.playlist_info);
@@ -17,34 +16,25 @@ function Player() {
   for(var i=0; i<playlist.length; i++){
     var song=playlist[i].artistname;
     var artist=playlist[i].songname;
-    console.log(song);
-    console.log(artist);
 
+    const api_key = 'AIzaSyAVMV_1I1LLP8TmZSrt-p9UbyOmlO_w1DM';
+    //var temp = [];
     // get videoId
-    axios.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyACXMpIuPD38LSqpHeXr8nY9kj8cR54vEg',
-    {
-    params: {
-    part: 'snippet',
-    q: artist+song,
-    type: 'video'
-    }
-    })
-    .then(res => {
-      var id = res.data.items[0]["id"]["videoId"]
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${
+      artist+song
+    }&type=video&key=${api_key}`
+    )
+    .then((res) => res.json())
+    .then((data) => {
+      var id = data.items[0]["id"]["videoId"]
       console.log(id) // video_id
-      //video_list.push(id)  // failed to push it
-      //playlist[i].id = id; // failed to add a new key(id) in object(playlist)
-
-      // put video_id in database?
     }).catch(e => {console.log(e)})
-
   }
-  //console.log(video_id); //failed
 
   //var target_url = 'http://www.youtube.com/embed?playlist=cbut2K6zvJY,7iw30sK2UCo,sYV5MTy0v1I';
   var target_url = 'http://www.youtube.com/embed?playlist=';
 
-  // fake_list
+  // fake video_ID_list
   video_list = ["Aa5onMizfco", "FonjL7DQAUQ"];
 
   //get playlist_url
