@@ -17,7 +17,10 @@ function SignupModal(props) {
   const handleSave = () => {
     const userName = userNameInput.current.value
     const password = passwordInput.current.value
-
+    if(!userName || !password) {
+      alert('請填入使用者名稱與密碼');
+      return;
+    }
     axios.post('/api/register',
     { username: userName, password: password }
     )
@@ -51,17 +54,17 @@ function SignupModal(props) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group>
               <Form.Label>User Name</Form.Label>
-              <Form.Control ref={userNameInput} placeholder="Enter Name" />
+              <Form.Control required ref={userNameInput} placeholder="Enter Name" />
               <Form.Text className="text-muted">
                 Name should be unique.
               </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group>
               <Form.Label>Password</Form.Label>
-              <Form.Control ref={passwordInput} type="password" placeholder="Password" />
+              <Form.Control required ref={passwordInput} type="password" placeholder="Password" />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -69,9 +72,9 @@ function SignupModal(props) {
           <Button variant="secondary" onClick={handleClose}>
             關閉
           </Button>
-          <Button variant="primary" onClick={handleSave}>
-            註冊
-          </Button>
+          <Button type="submit" variant="primary" onClick={handleSave}>
+              註冊
+            </Button>
         </Modal.Footer>
       </Modal>
     </div>

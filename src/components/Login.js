@@ -64,8 +64,8 @@ function Login() {
     <div>
       <Form inline onSubmit={handleSubmit}>
         {/* /* 2. Attach Ref to FormControl component */}
-        <FormControl ref={userNameInput} type="text" placeholder="帳號" className=" mr-sm-2" />
-        <FormControl ref={passwordInput} type="password" placeholder="密碼" className=" mr-sm-2" />
+        <FormControl required ref={userNameInput} type="text" placeholder="帳號" className=" mr-sm-2" />
+        <FormControl required ref={passwordInput} type="password" placeholder="密碼" className=" mr-sm-2" />
         <Button type="submit" onClick={getData}>登入</Button>
       </Form>
     </div>
