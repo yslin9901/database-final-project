@@ -35,7 +35,7 @@ function SongPreferenceModal(props) {
 
   return (
     <div className="modal-button">
-      <Button variant="primary" onClick={handleShow} className="btn-lg">
+      <Button variant="secondary" onClick={handleShow} className="btn-lg">
         依據歌曲性質建立歌單
       </Button>
 

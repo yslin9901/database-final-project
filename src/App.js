@@ -3,6 +3,7 @@ import MomentModal from './components/MomentModal';
 import SongPreferenceModal from './components/SongPreferenceModal'
 import ImportSongModdal from './components/ImportSongModal';
 import NavbarComponent from './components/NavbarComponent';
+import SearchByArtist from './components/SearchByArtist'
 import { useDispatch } from 'react-redux'
 import { storeAtmosphereType } from './actions'
 import './App.css';
@@ -39,8 +40,12 @@ function App() {
             <MomentModal name="清晨" />
           </div>  
         </div>
+        <SearchByArtist />
+      </div>
+      <div className="homepage-container-2">
         <SongPreferenceModal/>
       </div>
+      
     </>
   );
 }

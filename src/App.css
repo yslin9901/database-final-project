@@ -43,3 +43,10 @@
 .song-player-container > img {
   max-height: 650px;
 }
+
+.homepage-container-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
