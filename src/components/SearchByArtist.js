@@ -1,13 +1,21 @@
 import React, {useRef} from 'react'
 import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+import { useDispatch } from 'react-redux'
+import { playlistInfo } from '../actions'
 
 const SearchByArtist = () => {
   const searchByArtistField = useRef(null);
+  const dispatch = useDispatch();
   const handleSearch = () => {
     const artist = searchByArtistField.current.value;
-    console.log(artist)
-    // send request
+    const api = '/search';
+    axios.get(api, {artist: artist})
+    .then(res => {
+      dispatch(playlistInfo(res.data));
+    })
+    .catch(err => console.log(err))
   }
   return (
     <>
