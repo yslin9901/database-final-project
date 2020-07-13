@@ -6,21 +6,25 @@ import { useDispatch } from 'react-redux'
 import { playlistInfo } from '../actions'
 import { useHistory } from 'react-router-dom';
 
-const SearchByArtist = () => {
-  let history = useHistory();
+const SearchSong = () => {
   const [precise, setPrecise] = useState(false)
-  const searchByArtistField = useRef(null);
+  const searchSongField = useRef(null);
   const dispatch = useDispatch();
+  let history = useHistory()
   const handleSearch = () => {
-    const artist = searchByArtistField.current.value;
-    let api = `/api/searchArtist?artist=${artist}`;
+    const song = searchSongField.current.value;
+    let api = `/api/searchSong?song=${song}`;
     if(precise){
       api += '&mode=precise'
     }
+    console.log(api)
     axios.get(api)
       .then(res => {
         dispatch(playlistInfo(res.data));
         history.replace('/player')
+        const artist = res.data[0].artistname.replace('[\'', '').replace('\']', '')
+        const song_name = res.data[0].songname;
+        alert(`歌曲：${song_name}，歌手：${artist}`)
       })
       .catch(err => console.log(err))
   }
@@ -28,12 +32,12 @@ const SearchByArtist = () => {
   const handlePrecise = () => {
     setPrecise(precise => !precise);
   }
-  
+
   return (
     <>
       <Form.Group controlId="formBasicEmail">
-        <Form.Label>利用歌手搜尋</Form.Label>
-        <Form.Control ref={searchByArtistField} placeholder="輸入歌手" />
+        <Form.Label>搜尋歌曲</Form.Label>
+        <Form.Control ref={searchSongField} placeholder="輸入歌曲" />
       </Form.Group>
       <Button style={{ marginTop: '15px' }} variant="secondary" onClick={handleSearch}>搜尋</Button>
       <label style={{fontSize: '18px'}}>精準模式</label>
@@ -42,4 +46,4 @@ const SearchByArtist = () => {
   )
 }
 
-export default SearchByArtist;
+export default SearchSong;

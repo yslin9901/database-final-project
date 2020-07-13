@@ -4,6 +4,7 @@ import SongPreferenceModal from './components/SongPreferenceModal'
 import ImportSongModdal from './components/ImportSongModal';
 import NavbarComponent from './components/NavbarComponent';
 import SearchByArtist from './components/SearchByArtist'
+import SearchSong from './components/SearchSong'
 import { useDispatch } from 'react-redux'
 import { storeAtmosphereType } from './actions'
 import './App.css';
@@ -21,7 +22,7 @@ function App() {
       <div className="App">
         <ImportSongModdal />
         <div className="moments-container">
-          <div style={{fontWeight: 'bold', fontSize: '25px'}}>選擇情境</div>
+          <div style={{ fontWeight: 'bold', fontSize: '25px' }}>選擇情境</div>
           <div>&nbsp;</div>
           <div onClick={() => handleClick('jogging')}>
             <MomentModal name="路跑" />
@@ -40,14 +41,15 @@ function App() {
           </div>
           <div onClick={() => handleClick('morning')}>
             <MomentModal name="清晨" />
-          </div>  
+          </div>
         </div>
         <SearchByArtist />
       </div>
       <div className="homepage-container-2">
-        <SongPreferenceModal/>
+        <div style={{marginRight : '60px'}}><SongPreferenceModal /></div>
+        <SearchSong />
       </div>
-      
+
     </>
   );
 }

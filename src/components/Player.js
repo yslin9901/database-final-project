@@ -47,12 +47,31 @@ function Player() {
     target_url = target_url + videoList[i] + ",";
   }
 
+  // get user name
+  const userName = useSelector(state => state.user_name);
+  console.log(userName);
+
+  // save play_list
+  const handleSave = () => {
+    var playlist_str = JSON.stringify(playlist);
+    playlist_str = playlist_str.strip("[");
+    playlist_str = playlist_str.strip("]");
+
+    fetch('/api/save',
+    { username: userName, songlist: playlist_str }
+    )
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+
+  };
+
   return (
     <>
       <NavbarComponent />
       <div className="song-player-container">
         <iframe title="song_player" id="youriframe" width="640" height="360" src={target_url}></iframe>
-        <Button variant="primary" className="btn-lg">加入收藏</Button>
+        <Button variant="primary" className="btn-lg" onClick={handleSave}>加入收藏</Button>
       </div>
 
     </>
