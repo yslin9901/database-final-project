@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -7,12 +7,17 @@ import { playlistInfo } from '../actions'
 import { useHistory } from 'react-router-dom';
 
 const SearchSong = () => {
+  const [precise, setPrecise] = useState(false)
   const searchSongField = useRef(null);
   const dispatch = useDispatch();
   let history = useHistory()
   const handleSearch = () => {
     const song = searchSongField.current.value;
-    const api = `/api/searchSong?song=${song}`;
+    let api = `/api/searchSong?song=${song}`;
+    if(precise){
+      api += '&mode=precise'
+    }
+    console.log(api)
     axios.get(api)
       .then(res => {
         dispatch(playlistInfo(res.data));
@@ -23,6 +28,11 @@ const SearchSong = () => {
       })
       .catch(err => console.log(err))
   }
+
+  const handlePrecise = () => {
+    setPrecise(precise => !precise);
+  }
+
   return (
     <>
       <Form.Group controlId="formBasicEmail">
@@ -30,6 +40,8 @@ const SearchSong = () => {
         <Form.Control ref={searchSongField} placeholder="輸入歌曲" />
       </Form.Group>
       <Button style={{ marginTop: '15px' }} variant="secondary" onClick={handleSearch}>搜尋</Button>
+      <label style={{fontSize: '18px'}}>精準模式</label>
+      <input type="checkbox" id="preciseModeCheckbox" onClick={handlePrecise}/>
     </>
   )
 }
