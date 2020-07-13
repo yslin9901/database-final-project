@@ -58,7 +58,7 @@ function Player() {
     playlist_str = playlist_str.strip("]");
 
     fetch('/api/save',
-    { username: userName, playlist: playlist_str }
+    { username: userName, songlist: playlist_str }
     )
     .then(res => res.json())
     .then(data => console.log(data))
