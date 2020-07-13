@@ -46,7 +46,7 @@ function App() {
         <SearchByArtist />
       </div>
       <div className="homepage-container-2">
-        <SongPreferenceModal />
+        <div style={{marginRight : '60px'}}><SongPreferenceModal /></div>
         <SearchSong />
       </div>
 
