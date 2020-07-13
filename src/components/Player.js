@@ -54,9 +54,9 @@ function Player() {
   // save play_list
   const handleSave = () => {
     var playlist_str = JSON.stringify(playlist);
-    playlist_str = playlist_str.strip("[");
-    playlist_str = playlist_str.strip("]");
-
+    //playlist_str = playlist_str.strip("[");
+    //playlist_str = playlist_str.strip("]");
+	console.log(playlist_str)
     fetch('/api/save',
     { username: userName, songlist: playlist_str }
     )
