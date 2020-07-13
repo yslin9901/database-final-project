@@ -54,11 +54,24 @@ function Player() {
   // save play_list
   const handleSave = () => {
     var playlist_str = JSON.stringify(playlist);
-    playlist_str = playlist_str.strip("[");
-    playlist_str = playlist_str.strip("]");
+    playlist_str = playlist_str.replace('&','%26')
+	  //playlist_str.replace('"', ' ')
+    //playlist_str = playlist_str.strip("[");
+    //playlist_str = playlist_str.strip("]");
+    //console.log(playlist_str);
+    //console.log(typeof playlist_str);
+   /* let artists = ''
+    let songs = ''
+    for(let i = 0; i < playlist.length; i++){
+        let songName = playlist[i].songname;
+	let artistName = playlist[i].artistname;
+	artists+=`SEPERATOR${artistName}`
+	songs+= `,${songName}`
+    }
+*/	 
 
-    fetch('/api/save',
-    { username: userName, songlist: playlist_str }
+    console.log(playlist_str)
+    fetch(`/api/save?user=${userName}&songlist=${playlist_str}`
     )
     .then(res => res.json())
     .then(data => console.log(data))
