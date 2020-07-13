@@ -25,11 +25,11 @@ function SongPreferenceModal(props) {
   const handleSave = () => {
     const api = `/api/customize_attributes?tempo=${tempo}&energy=${energy}&liveness=${liveness}&duration=${duration}`
     axios.get(api)
-    .then(res => {
-      dispatch(playlistInfo(res.data));
-    })
-    .catch(err => console.log(err))
-    
+      .then(res => {
+        dispatch(playlistInfo(res.data));
+      })
+      .catch(err => console.log(err))
+
     setShow(false);
   };
 
@@ -44,7 +44,7 @@ function SongPreferenceModal(props) {
           <Modal.Title>Preferences</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SongPreference/>
+          <SongPreference />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

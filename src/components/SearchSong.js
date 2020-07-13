@@ -6,29 +6,32 @@ import { useDispatch } from 'react-redux'
 import { playlistInfo } from '../actions'
 import { useHistory } from 'react-router-dom';
 
-const SearchByArtist = () => {
-  let history = useHistory();
-  const searchByArtistField = useRef(null);
+const SearchSong = () => {
+  const searchSongField = useRef(null);
   const dispatch = useDispatch();
+  let history = useHistory()
   const handleSearch = () => {
-    const artist = searchByArtistField.current.value;
-    const api = `/api/searchArtist?artist=${artist}`;
+    const song = searchSongField.current.value;
+    const api = `/api/searchSong?song=${song}`;
     axios.get(api)
       .then(res => {
         dispatch(playlistInfo(res.data));
         history.replace('/player')
+        const artist = res.data[0].artistname.replace('[\'', '').replace('\']', '')
+        const song_name = res.data[0].songname;
+        alert(`歌曲：${song_name}，歌手：${artist}`)
       })
       .catch(err => console.log(err))
   }
   return (
     <>
       <Form.Group controlId="formBasicEmail">
-        <Form.Label>利用歌手搜尋</Form.Label>
-        <Form.Control ref={searchByArtistField} placeholder="輸入歌手" />
+        <Form.Label>搜尋歌曲</Form.Label>
+        <Form.Control ref={searchSongField} placeholder="輸入歌曲" />
       </Form.Group>
       <Button style={{ marginTop: '15px' }} variant="secondary" onClick={handleSearch}>搜尋</Button>
     </>
   )
 }
 
-export default SearchByArtist;
+export default SearchSong;
