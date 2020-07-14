@@ -36,10 +36,11 @@ function Collection() {
       <ListGroup>
         {savedSongsInfo.map(songInfo => {
           const { artistname, songname } = songInfo;
+          songname.replace('\'','').replace('[','').replace(']','')
           return (
             <ListGroup.Item
               key={songname}
-            >{songname + ' by ' + artistname}</ListGroup.Item>
+            >{'歌曲： ' + songname + '  ,歌手： ' + artistname}</ListGroup.Item>
           );
         })}
       </ListGroup>

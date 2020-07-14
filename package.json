@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "12.18.2"
+    "node": "12.13.1"
   },
   "dependencies": {
     "@emotion/styled": "^10.0.27",
