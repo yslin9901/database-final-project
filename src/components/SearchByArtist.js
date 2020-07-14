@@ -32,12 +32,12 @@ const SearchByArtist = () => {
   return (
     <>
       <Form.Group controlId="formBasicEmail">
-        <Form.Label>利用歌手搜尋</Form.Label>
+        <Form.Label style={{ marginRight: '50%' }}>利用歌手搜尋</Form.Label>
         <Form.Control ref={searchByArtistField} placeholder="輸入歌手" />
       </Form.Group>
       <Button style={{ marginTop: '15px' }} variant="secondary" onClick={handleSearch}>搜尋</Button>
-      <label style={{fontSize: '18px'}}>精準模式</label>
-      <input type="checkbox" id="preciseModeCheckbox" onClick={handlePrecise}/>
+      <label style={{fontSize: '18px', margin:'5px 0px 0px 6px'}}>精準模式</label>
+      <input style={{fontSize: '18px', margin:'3px 0px 0px 2px'}} type="checkbox" id="preciseModeCheckbox" onClick={handlePrecise}/>
     </>
   )
 }

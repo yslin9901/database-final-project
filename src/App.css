@@ -6,6 +6,11 @@
   align-items: center;
 }
 
+body {
+  background: url("1.png");
+  background-size: cover;
+}
+
 .moments-container {
   display: flex;
   flex-wrap: wrap;
@@ -13,6 +18,7 @@
   justify-content: space-between;
   padding: 20px;
   margin-right: 30px;
+  margin-top: -150px;
 }
 
 .moments-container > div {
